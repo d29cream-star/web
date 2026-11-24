@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>요청 페이지</title>
+</head>
+<body>
+	<h1>서버로 요청을 보내서 동적 응답 받아오기</h1>
+
+	<pre>
+	구현 시나리오 
+	테이블에 데이터가 저장되어 있음(가정)
+	존재하는 아이디를 입력하면 데이터 응답
+	</pre>
+
+	<form action="http://127.0.0.1:8000/first/a" method="get">
+		<input type="text" name="keyword">
+		<button type="submit">요청보내기</button>
+	</form>
+
+	<h2>JSP의 등장</h2>
+	<form action="http://127.0.0.1:8000/first/soupShop.do" method="post">
+		<fieldset>
+			<legend>국밥집 등록</legend>
+				상호명 :<input type="text"name="shop-name"/> <br/>			
+				주소지 :<textarea name="address"></textarea>
+				<button type="submit">등록하기</button>
+		</fieldset>
+	</form>
+
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>웹 프로젝트</title>
+</head>
+<body>
+	<h1>웹 개발</h1>
+
+<button id="btn">첫 요청 페이지로 이동</button>
+<script>
+	document.querySelector("#btn").onclick = () => {
+	location.href="http://127.0.0.1:8000/first/views/first_request.html";
+	}
+</script>
+
+<button id="el-btn">알쏭달쏭</button>
+	<script>
+	
+	document.querySelector("#el-btn").onclick = () => {
+	location.href="http://127.0.0.1:8000/first/Kimchi.do";
+	}
+	</script>
+	
+	<a href="http://127.0.0.1:8000/first/jstl.do">JSTL</a>	
+
+</body>
+</html>
