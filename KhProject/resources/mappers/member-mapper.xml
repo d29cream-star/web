@@ -42,5 +42,36 @@
  	      	   STATUS = 'N'
  	   	
  	</select>
+ 	
+ 	<update id="updateMember"
+ 			parameterType="com.kh.member.model.dto.MemberDto">
+ 			
+ 		UPDATE
+ 				TB_MEMBER
+ 		   SET
+ 		   		
+ 		   		MEMBER_NAME = #{memberName}
+ 		   	  , EMAIL = #{email}
+ 		   	    
+ 		 WHERE
+ 		 		MEMBER_ID = #{memberId}
+ 		   AND
+ 		   		STATUS = 'N' 	  
+ 	</update>
  
+ 	<delete id="deleteMember"
+ 			parameterType="com.kh.member.model.dto.MemberDto">
+ 			
+ 	    UPDATE
+ 	    	   TB_MEMBER
+ 	       SET
+ 	       	   STATUS = 'Y'
+ 	     WHERE
+ 	     	   MEMBER_ID = #{memberId}
+ 	       AND 
+ 	       	   MEMBER_PWD = #{memberPwd}
+ 	       AND
+ 			   STATUS = 'N'
+ 	
+ 	</delete>
 </mapper>

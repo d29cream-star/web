@@ -36,7 +36,8 @@ public class MemberInsertController extends HttpServlet {
 		int result = new MemberService().insertMember(member);
 		
 		if(result > 0) {
-			response.sendRedirect("/Kh");
+			response.sendRedirect(request.getContextPath());
+			//response.sendRedirect("/Kh");
 			//request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else {
 			request.setAttribute("msg", "회원가입에 실패하셨습니다.");

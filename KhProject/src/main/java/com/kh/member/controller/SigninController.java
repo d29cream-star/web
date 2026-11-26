@@ -38,7 +38,7 @@ public class SigninController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginMember", loginMember);
 			//request.setAttribute("loginMember", loginMember);
-			response.sendRedirect("/Kh");
+			response.sendRedirect(request.getContextPath());
 			//request.getRequestDispatcher("/index.jsp").forward(request, response);
 			
 		}else{

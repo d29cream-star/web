@@ -100,13 +100,13 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav text-uppercase ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="">HOME</a>
+            <a class="nav-link js-scroll-trigger" href=<% request.getContextPath(); %>>HOME</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#">공지사항</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="">게시판</a>
+            <a class="nav-link js-scroll-trigger" href="http://127.0.0.1:8000/Kh/boardlist.do">게시판</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="">사진게시판</a>
@@ -123,10 +123,10 @@
 			</c:when>
 			<c:otherwise>
           <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="">내정보</a>
+          <a class="nav-link js-scroll-trigger" href="http://127.0.0.1:8000/Kh/mypage.do">내정보</a>
           </li>
           <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="http://127.0.0.1:8000/logout.do" onclick="return confirm('정말로 로그아웃하실 건가요?')">로그아웃</a>
+          <a class="nav-link js-scroll-trigger" href="http://127.0.0.1:8000/Kh/logout.do" onclick="return confirm('정말로 로그아웃하실 건가요?')">로그아웃</a>
           </li>
 			</c:otherwise>
 		 </c:choose>
