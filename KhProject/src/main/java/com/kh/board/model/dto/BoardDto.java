@@ -1,6 +1,6 @@
 package com.kh.board.model.dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class BoardDto {
 

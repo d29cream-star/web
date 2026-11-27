@@ -74,4 +74,5 @@
  			   STATUS = 'N'
  	
  	</delete>
+ 	
 </mapper>

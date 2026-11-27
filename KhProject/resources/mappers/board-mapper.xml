@@ -4,11 +4,15 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardMapper">
  <insert id="insertBoard">
+ 	<selectKey order="AFTER" resultType="long" keyProperty="boardId">
+ 		SELECT MAX(BOARD_ID) FROM TB_BOARD
+ 	
+ 	</selectKey>
  	INSERT
  	  INTO
  	  	   TB_BOARD
  	  	   (
- 	  	  	BOARD_NO 
+ 	  	  	BOARD_ID 
  	  	  ,	BOARD_TITLE
  	  	  , BOARD_CONTENT
           , MEMBER_ID
@@ -39,6 +43,7 @@
  	 VALUES
  	 		(
  	 		SEQ_ANO.NEXTVAL
+ 	 	  , #{refBno}
  	 	  , #{originName}
  	 	  , #{changeName}
  	 	  , #{filePath}
@@ -49,4 +54,85 @@
  
  </insert>
  
+ <select id="selectBoardCount"
+ 		 resultType="_int">
+ 		
+ 	SELECT 
+ 			COUNT(*)
+ 	  FROM
+ 	  		TB_BOARD
+ 	 WHERE
+ 	 		 STATUS = 'N'
+ 		 
+  </select>
+  <select id="selectBoardList"
+  		  resultType="com.kh.board.model.dto.BoardDto">
+  
+  	SELECT
+  			BOARD_ID 
+  		 ,	MEMBER_NAME memberId
+  		 ,	BOARD_TITLE
+  		 ,  CREATE_DATE
+  		 ,  COUNT 
+  	 FROM	
+  	 		TB_BOARD
+  	 JOIN	
+  	 		TB_MEMBER USING (MEMBER_ID)
+  	WHERE
+  			TB_BOARD.STATUS = 'N'
+  	ORDER
+  	   BY
+  	   		CREATE_DATE DESC
+  	OFFSET
+  			#{offset} ROWS FETCH NEXT #{boardLimit} ROWS ONLY
+  
+  
+  </select>
+  <update id="increaseCount">
+ 	
+ 		UPDATE
+ 			   TB_BOARD
+ 		   SET
+ 			   COUNT = COUNT + 1
+ 	     WHERE
+ 	           BOARD_ID = #{boardId}
+ 	       AND
+ 	       	   STATUS = 'N'
+
+ 	</update>
+ 	
+ 	<select id="selectBoard"
+ 			resultType="com.kh.board.model.dto.BoardDto">
+ 		SELECT 
+ 				BOARD_ID
+ 			 ,  MEMBER_NAME memberId
+ 			 ,  BOARD_TITLE
+ 			 ,  BOARD_CONTENT
+ 		  FROM
+ 		  		TB_BOARD
+ 		  JOIN
+ 		  		TB_MEMBER USING(MEMBER_ID)
+ 		 WHERE
+ 		 		TB_BOARD.STATUS = 'N'
+ 		  AND
+ 		  		BOARD_ID = #{boardId}
+ 
+ 	</select>
+ 	
+ 	<select id="selectAttachment"
+ 			resultType="com.kh.board.model.dto.AttachmentDto">
+ 		SELECT
+ 				FILE_NO
+ 			 ,	ORIGIN_NAME
+ 			 ,  CHANGE_NAME
+ 			 ,	FILE_PATH
+ 		  FROM
+ 		  		TB_ATTACHMENT
+ 		 WHERE
+ 		 		REF_BNO = #{boardId}
+ 		   AND
+ 		   		BOARD_TYPE = 1
+ 	
+ 	</select>
+
 </mapper>

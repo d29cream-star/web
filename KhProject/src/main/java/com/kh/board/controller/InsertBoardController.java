@@ -60,7 +60,18 @@ public class InsertBoardController extends HttpServlet {
 				at.setBoardType(1);
 			}
 			
-			new BoardService().insertBoard(board, at);
+			int result = new BoardService().insertBoard(board, at);
+			
+			if(result > 0) {
+				response.sendRedirect(request.getContextPath() +"/boardlist.do?page=1");
+				
+				//request.getRequestDispatcher("/WEB-INF/views/board/board_list.jsp").forward(request, response);
+			
+			}else {
+				request.setAttribute("msg", "게시글 작성에 실패했습니다.");
+				request.getRequestDispatcher("/WEB-INF/views/common/result.jsp").forward(request, response);
+			}
+			
 			
 		}
 			
